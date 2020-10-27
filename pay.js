@@ -9,6 +9,12 @@ const language = document.querySelector("#language");
 const consoleOnly = document.querySelector("#consoleOnly");
 let payBtn = document.querySelector(".pay");
 
+/**
+ * Build a random string of a given length
+ *
+ * @param {int} length the length of the string to build
+ * @returns {string}
+ */
 //Source: https://stackoverflow.com/questions/1349404/generate-random-string-characters-in-javascript
 function makeid(length) {
   var result = "";
@@ -19,11 +25,15 @@ function makeid(length) {
   }
   return result;
 }
-//Source: https://gist.github.com/gordonbrander/2230317
+/**
+ * Get a guid made of 5 parts
+ * - part 1: 8 characters
+ * - part 2: 4 characters
+ * - part 3: 4 characters
+ * - part 4: 4 characters
+ * - part 5: 10 characters
+ */
 function getGuid() {
-  // Math.random should be unique because of its seeding algorithm.
-  // Convert it to base 36 (numbers + letters), and grab the first 9 characters
-  // after the decimal.
   const part1_8 = makeid(8);
   const part2_4 = makeid(4);
   const part3_4 = makeid(4);
@@ -35,6 +45,11 @@ function getGuid() {
   return guid.toLowerCase();
 }
 
+/**
+ * Check the response data (not undefined or null) and redirect user to EMS pay page
+ *
+ * @param {Object} responseData JSON data sent back by EMS Pay
+ */
 function processResponse(responseData) {
   if (responseData == undefined || responseData === null) {
     console.error("data is absent");
@@ -43,6 +58,11 @@ function processResponse(responseData) {
   console.log(`Redirection to ${responseData.order_url}`);
   document.location.href = responseData.order_url;
 }
+/**
+ * Build the ajax data and request, send it and listen for the response.
+ *
+ * @param {Object} requestData The object containing the data to send.
+ */
 function processRequest(requestData) {
   let customHeaders = new Headers();
   customHeaders.append("Content-Type", "application/json");
@@ -81,6 +101,9 @@ function processRequest(requestData) {
     });
 }
 
+/**
+ * Listener on click of the pay button
+ */
 payBtn.addEventListener("click", function (event) {
   var data = {
     currency: currency.value,
