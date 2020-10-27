@@ -1,10 +1,22 @@
+const selfUrl = document.location.href;
+console.log(selfUrl);
+
 const url = "https://api.online.emspay.eu/v1/orders/";
 const amount = document.querySelector("#amount");
 const currency = document.querySelector("#currency");
 const merchandOrderId = document.querySelector("#merchandOrderId");
 const language = document.querySelector("#language");
-
 let payBtn = document.querySelector(".pay");
+
+//Source: https://gist.github.com/gordonbrander/2230317
+const ID = function () {
+  // Math.random should be unique because of its seeding algorithm.
+  // Convert it to base 36 (numbers + letters), and grab the first 9 characters
+  // after the decimal.
+  const generatedVal = "_" + Math.random().toString(36).substr(2, 9);
+  console.log(generatedVal);
+  return generatedVal;
+};
 
 function processResponse(responseData) {
   if (responseData == undefined || responseData === null) {
@@ -57,8 +69,8 @@ payBtn.addEventListener("click", function (event) {
     currency: currency.value,
     amount: amount.value * 100,
     description: "Example description",
-    merchant_order_id: "fcdba424-a5a1-47c1-8c23-211a29e20d0b",
-    return_url: "https://www.example.com/",
+    merchant_order_id: ID,
+    return_url: selfUrl,
     customer: {
       locale: language.value,
     },
