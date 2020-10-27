@@ -17,10 +17,18 @@
 <body>
     <h1>Simulate payment</h1>
     <form action="#" id="formData">
-        <input type="number" name="amount" id="amount" value="1.50">
-        <input type="text" name="currency" id="currency" value="EUR" disabled>
-        <input type="text" name="merchandOrderId" id="merchandOrderId" value="">
-        <input type="text" name="language" id="language" value="fr">
+        <label>Amount
+            <input type="number" name="amount" id="amount" value="1.50">
+        </label>
+        <label>Currency
+            <input type="text" name="currency" id="currency" value="EUR" disabled>
+        </label>
+        <label>Language
+            <input type="text" name="language" id="language" value="fr">
+        </label>
+        <label>Debug ?
+            <input type="checkbox" name="consoleOnly" id="consoleOnly" checked>
+        </label>
     </form>
     <button class="pay">Pay</button>
     <script src="pay.js"></script>

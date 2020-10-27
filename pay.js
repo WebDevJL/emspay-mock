@@ -6,17 +6,34 @@ const amount = document.querySelector("#amount");
 const currency = document.querySelector("#currency");
 const merchandOrderId = document.querySelector("#merchandOrderId");
 const language = document.querySelector("#language");
+const consoleOnly = document.querySelector("#consoleOnly");
 let payBtn = document.querySelector(".pay");
 
+//Source: https://stackoverflow.com/questions/1349404/generate-random-string-characters-in-javascript
+function makeid(length) {
+  var result = "";
+  var characters = "abcdefghijklmnopqrstuvwxyz0123456789";
+  var charactersLength = characters.length;
+  for (var i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+}
 //Source: https://gist.github.com/gordonbrander/2230317
-const ID = function () {
+function getGuid() {
   // Math.random should be unique because of its seeding algorithm.
   // Convert it to base 36 (numbers + letters), and grab the first 9 characters
   // after the decimal.
-  const generatedVal = "_" + Math.random().toString(36).substr(2, 9);
-  console.log(generatedVal);
-  return generatedVal;
-};
+  const part1_8 = makeid(8);
+  const part2_4 = makeid(4);
+  const part3_4 = makeid(4);
+  const part4_4 = makeid(4);
+  const part5_10 = makeid(10);
+
+  let guid = `${part1_8}-${part2_4}-${part3_4}-${part4_4}-${part5_10}`;
+  console.log(`Guid is ${guid}`);
+  return guid.toLowerCase();
+}
 
 function processResponse(responseData) {
   if (responseData == undefined || responseData === null) {
@@ -69,11 +86,17 @@ payBtn.addEventListener("click", function (event) {
     currency: currency.value,
     amount: amount.value * 100,
     description: "Example description",
-    merchant_order_id: ID,
+    merchant_order_id: getGuid(),
     return_url: selfUrl,
     customer: {
       locale: language.value,
     },
   };
+  if (consoleOnly.checked) {
+    console.log("Data is", data);
+    return;
+  }
+
+  console.log("Send request!", data);
   processRequest(data);
 });
