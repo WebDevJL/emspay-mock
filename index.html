@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test EMS Pay</title>
+    <style>
+        form * {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1em;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Simulate payment</h1>
+    <form action="#" id="formData">
+        <input type="number" name="amount" id="amount" value="1.50">
+        <input type="text" name="currency" id="currency" value="EUR" disabled>
+        <input type="text" name="merchandOrderId" id="merchandOrderId" value="">
+        <input type="text" name="language" id="language" value="fr">
+    </form>
+    <button class="pay">Pay</button>
+    <script src="pay.js"></script>
+</body>
+
+</html>
