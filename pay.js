@@ -1,7 +1,7 @@
-const selfUrl = document.location.href;
-console.log(selfUrl);
+const baseAppUrl = document.location.href;
+console.log(baseAppUrl);
 
-const url = "https://api.online.emspay.eu/v1/orders/";
+const emsApiUrl = "https://api.online.emspay.eu/v1/orders/";
 const amount = document.querySelector("#amount");
 const currency = document.querySelector("#currency");
 const merchandOrderId = document.querySelector("#merchandOrderId");
@@ -76,7 +76,7 @@ function processRequest(requestData) {
     body: JSON.stringify(requestData),
     redirect: "follow",
   };
-  const request = new Request(url, params);
+  const request = new Request(emsApiUrl, params);
   fetch(request, params)
     .then((response) => {
       console.log("Fetch response", response);
@@ -110,7 +110,7 @@ payBtn.addEventListener("click", function (event) {
     amount: amount.value * 100,
     description: "Example description",
     merchant_order_id: getGuid(),
-    return_url: selfUrl,
+    return_url: baseAppUrl,
     customer: {
       locale: language.value,
     },
