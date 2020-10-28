@@ -31,16 +31,16 @@ function makeid(length) {
  * - part 2: 4 characters
  * - part 3: 4 characters
  * - part 4: 4 characters
- * - part 5: 10 characters
+ * - part 5: 12 characters
  */
 function getGuid() {
   const part1_8 = makeid(8);
   const part2_4 = makeid(4);
   const part3_4 = makeid(4);
   const part4_4 = makeid(4);
-  const part5_10 = makeid(10);
+  const part5_12 = makeid(12);
 
-  let guid = `${part1_8}-${part2_4}-${part3_4}-${part4_4}-${part5_10}`;
+  let guid = `${part1_8}-${part2_4}-${part3_4}-${part4_4}-${part5_12}`;
   console.log(`Guid is ${guid}`);
   return guid.toLowerCase();
 }
