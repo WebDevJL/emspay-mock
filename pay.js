@@ -1,4 +1,4 @@
-const baseAppUrl = `${document.location.protocol}//${document.location.host}`;
+const baseAppUrl = `${document.location.protocol}//${document.location.host}/result.html`;
 console.log(baseAppUrl);
 
 const emsApiUrl = "https://api.online.emspay.eu/v1/orders/";
@@ -105,11 +105,12 @@ function processRequest(requestData) {
  * Listener on click of the pay button
  */
 payBtn.addEventListener("click", function (event) {
-  var data = {
+  const guid = getGuid();
+  const data = {
     currency: currency.value,
     amount: amount.value * 100,
-    description: "Example description",
-    merchant_order_id: getGuid(),
+    description: `EMS Pay simulation - ${guid}`,
+    merchant_order_id: guid,
     return_url: baseAppUrl,
     customer: {
       locale: language.value,
