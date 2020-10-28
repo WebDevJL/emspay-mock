@@ -38,6 +38,9 @@ function fillHtml(data) {}
  */
 function getDataFromApi(requestData) {
   const order = getOrder();
+
+  if (!order.order_id) return;
+
   const getUrl = `${emsApiUrl}${order.order_id}`;
   let customHeaders = new Headers();
   customHeaders.append(
