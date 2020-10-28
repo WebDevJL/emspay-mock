@@ -1,4 +1,4 @@
-const baseAppUrl = `${document.location.protocol}://${document.location.host}`;
+const baseAppUrl = `${document.location.protocol}//${document.location.host}`;
 console.log(baseAppUrl);
 
 const emsApiUrl = "https://api.online.emspay.eu/v1/orders/";
