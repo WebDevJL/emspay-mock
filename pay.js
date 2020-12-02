@@ -1,5 +1,9 @@
-const baseAppUrl = `${document.location.protocol}//${document.location.host}/result.html`;
+const baseAppUrl =  `${document.location.protocol}//${document.location.host}`;
+const returnUrl = `${baseAppUrl}/result.html`;
+const webhookUrl = `${baseAppUrl}/webhook.php`;
 console.log(baseAppUrl);
+console.log(returnUrl);
+console.log(webhookUrl);
 
 const emsApiUrl = "https://api.online.emspay.eu/v1/orders/";
 const amount = document.querySelector("#amount");
@@ -111,7 +115,8 @@ payBtn.addEventListener("click", function (event) {
     amount: amount.value * 100,
     description: `EMS Pay simulation - ${guid}`,
     merchant_order_id: guid,
-    return_url: baseAppUrl,
+    return_url: returnUrl,
+    webhook_url: webhookUrl,
     customer: {
       locale: language.value,
     },
